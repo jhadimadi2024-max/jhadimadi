@@ -1,0 +1,38 @@
+[
+  {
+    "unique_id": "খাগড়া-০০১",
+    "name": "সুমন চাকমা",
+    "phone": "01870592699",
+    "skills_or_job_type": "কম্পিউটার অপারেটর, ডাটা এন্ট্রি, গ্রাফিক্স ডিজাইন",
+    "education": "স্নাতক (বিএসএস)",
+    "experience": "২ বছর",
+    "district": "খাগড়াছড়ি",
+    "upazila": "খাগড়াছড়ি সদর",
+    "area": "কলেজ গেট",
+    "photo_url": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80"
+  },
+  {
+    "unique_id": "রাঙ্গা-০০২",
+    "name": "তানিয়া আক্তার",
+    "phone": "01812345678",
+    "skills_or_job_type": "হিসাবরক্ষণ, ক্যাশিয়ার, অফিস অ্যাসিস্ট্যান্ট",
+    "education": "বিবিএ (অ্যাকাউন্টিং)",
+    "experience": "১ বছর",
+    "district": "রাঙ্গামাটি",
+    "upazila": "রাঙ্গামাটি সদর",
+    "area": "তবলছড়ি",
+    "photo_url": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80"
+  },
+  {
+    "unique_id": "বান্দর-০০৩",
+    "name": "মং শৈ প্রু মারমা",
+    "phone": "01798765432",
+    "skills_or_job_type": "ড্রাইভার (হালকা ও ভারী যান), ট্যুর গাইড",
+    "education": "এইচএসসি",
+    "experience": "৪ বছর",
+    "district": "বান্দরবান",
+    "upazila": "বান্দরবান সদর",
+    "area": "বালাঘাটা",
+    "photo_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80"
+  }
+]

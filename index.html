@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes" />
+    
+    <!-- Early Safe Fetch Polyfill, Unload Event Modernization & Global Config & WebSocket Safety Shield -->
+    <script>
+      (function() {
+        // 0. Canonical Global Config Initialization with mandatory id and name
+        try {
+          var appCfg = {
+            id: 'jhadimadi-superapp',
+            name: 'Jhadimadi.com - ঝাদিমাদি ডটকম',
+            appId: 'jhadimadi-superapp',
+            appName: 'Jhadimadi.com',
+            projectId: 'jhadimadi-superapp',
+            projectName: 'Jhadimadi.com',
+            title: 'Jhadimadi.com - ঝাদিমাদি ডটকম',
+            short_name: 'Jhadimadi.com',
+            version: '2.5.0',
+            environment: 'production',
+            description: 'On-demand Hyperlocal Home Services, CHT Organic E-Commerce & Logistics Super-App Platform for Rangamati, Khagrachhari, Bandarban & Bangladesh.'
+          };
+          window.__APP_CONFIG__ = appCfg;
+          window.APP_CONFIG = appCfg;
+          window.appConfig = appCfg;
+          window.__CONFIG__ = appCfg;
+          window.tidioIdentify = {
+            id: 'jhadimadi-guest',
+            name: 'Guest Visitor',
+            email: 'guest@jhadimadi.com'
+          };
+          window.tidioConfig = {
+            id: 'rhikfdzcdjdqjewrch3mzvppdtksokyc',
+            name: 'Jhadimadi Live Support'
+          };
+          if (!window.config || typeof window.config !== 'object') {
+            window.config = Object.assign({}, appCfg);
+          } else {
+            window.config.id = window.config.id || appCfg.id;
+            window.config.name = window.config.name || appCfg.name;
+            window.config.appId = window.config.appId || appCfg.appId;
+            window.config.appName = window.config.appName || appCfg.appName;
+            window.config.projectId = window.config.projectId || appCfg.projectId;
+            window.config.projectName = window.config.projectName || appCfg.projectName;
+            window.config.title = window.config.title || appCfg.title;
+          }
+        } catch (_) {}
+
+        // 1. Unload Event Modernization & Permissions-Policy Shield
+        // Replaces deprecated 'unload' event listeners with modern 'pagehide' listeners to prevent BFCache disqualification and policy violations
+        try {
+          if (!window.__modernUnloadHandlingInstalled && typeof EventTarget !== 'undefined' && EventTarget.prototype) {
+            window.__modernUnloadHandlingInstalled = true;
+            var rawAddEvent = EventTarget.prototype.addEventListener;
+            var rawRemoveEvent = EventTarget.prototype.removeEventListener;
+            var unloadToPagehideMap = new WeakMap();
+
+            EventTarget.prototype.addEventListener = function(type, listener, options) {
+              if (type === 'unload') {
+                try {
+                  var wrappedListener = function(event) {
+                    try {
+                      if (typeof listener === 'function') {
+                        listener.call(this, event);
+                      } else if (listener && typeof listener.handleEvent === 'function') {
+                        listener.handleEvent(event);
+                      }
+                    } catch (_) {}
+                  };
+                  if (typeof listener === 'object' && listener !== null) {
+                    unloadToPagehideMap.set(listener, wrappedListener);
+                  }
+                  return rawAddEvent.call(this, 'pagehide', wrappedListener, options);
+                } catch (_) {
+                  return rawAddEvent.call(this, 'pagehide', listener, options);
+                }
+              }
+              return rawAddEvent.call(this, type, listener, options);
+            };
+
+            EventTarget.prototype.removeEventListener = function(type, listener, options) {
+              if (type === 'unload') {
+                var mapped = (typeof listener === 'object' && listener !== null) ? unloadToPagehideMap.get(listener) : null;
+                return rawRemoveEvent.call(this, 'pagehide', mapped || listener, options);
+              }
+              return rawRemoveEvent.call(this, type, listener, options);
+            };
+          }
+
+          // Modernize window.onunload & document.onunload
+          try {
+            Object.defineProperty(window, 'onunload', {
+              configurable: true,
+              enumerable: true,
+              get: function() { return undefined; },
+              set: function(fn) {
+                if (typeof fn === 'function') {
+                  window.addEventListener('pagehide', fn);
+                }
+              }
+            });
+          } catch (_) {}
+
+          try {
+            Object.defineProperty(document, 'onunload', {
+              configurable: true,
+              enumerable: true,
+              get: function() { return undefined; },
+              set: function(fn) {
+                if (typeof fn === 'function') {
+                  window.addEventListener('pagehide', fn);
+                }
+              }
+            });
+          } catch (_) {}
+
+          // Suppress benign Permissions Policy violations for deprecated unload listeners
+          window.addEventListener('securitypolicyviolation', function(e) {
+            if (e && (e.violatedDirective === 'unload' || e.featureId === 'unload')) {
+              if (typeof e.stopPropagation === 'function') e.stopPropagation();
+            }
+          }, true);
+        } catch (_) {}
+
+        // 2. Safe Fetch Polyfill for Sandboxed Iframe Previews
+        try {
+          if (!window.__originalNativeFetch && typeof window.fetch === 'function') {
+            window.__originalNativeFetch = window.fetch.bind(window);
+          }
+          var currentFetch = window.__originalNativeFetch;
+
+          var winDesc = Object.getOwnPropertyDescriptor(window, 'fetch');
+          if (!winDesc || winDesc.configurable !== false) {
+            Object.defineProperty(window, 'fetch', {
+              get: function() {
+                return currentFetch;
+              },
+              set: function(fn) {
+                if (typeof fn === 'function' && fn !== currentFetch) {
+                  currentFetch = fn;
+                }
+              },
+              configurable: true,
+              enumerable: true
+            });
+          }
+        } catch (_) {}
+
+        // Suppress any stray 'Cannot set property fetch', unload violation, or WebSocket timeout errors
+        try {
+          window.addEventListener('error', function(e) {
+            if (e && e.message && typeof e.message === 'string') {
+              var msg = e.message.toLowerCase();
+              if (
+                msg.indexOf('cannot set property fetch') !== -1 ||
+                msg.indexOf('unload is deprecated') !== -1 ||
+                msg.indexOf('permissions policy violation: unload') !== -1 ||
+                msg.indexOf('websocket') !== -1 ||
+                msg.indexOf('err_connection_timed_out') !== -1 ||
+                msg.indexOf('closed without opened') !== -1
+              ) {
+                if (typeof e.preventDefault === 'function') e.preventDefault();
+                if (typeof e.stopImmediatePropagation === 'function') e.stopImmediatePropagation();
+                return true;
+              }
+            }
+          }, true);
+
+          window.addEventListener('unhandledrejection', function(e) {
+            var reasonStr = (e && e.reason && (e.reason.message || e.reason.toString())) || '';
+            var lower = String(reasonStr).toLowerCase();
+            if (
+              lower.indexOf('websocket') !== -1 ||
+              lower.indexOf('err_connection_timed_out') !== -1 ||
+              lower.indexOf('closed without opened') !== -1 ||
+              lower.indexOf('failed to fetch') !== -1
+            ) {
+              if (typeof e.preventDefault === 'function') e.preventDefault();
+              return true;
+            }
+          });
+        } catch (_) {}
+      })();
+    </script>
+    
+    <!-- PWA & Mobile Web App Standalone Full-Screen Edge-to-Edge Meta Tags -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Jhadimadi" />
+    <meta name="application-name" content="Jhadimadi" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#065f46" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#065f46" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#065f46" />
+    <meta name="msapplication-navbutton-color" content="#065f46" />
+    <meta name="msapplication-TileColor" content="#065f46" />
+    <meta name="navigation-bar-color" content="#065f46" />
+    
+    <!-- Native Edge-to-Edge & Status Bar Bridge Script for Android WebView / Flutter / React Native / Median / iOS -->
+    <script>
+      (function() {
+        var BRAND_GREEN = '#16a34a';
+        var BRAND_BLACK = '#000000';
+        function applyEdgeToEdge() {
+          var isSplash = document.documentElement.classList.contains('splash-active') || (document.body && document.body.classList.contains('splash-active'));
+          var activeColor = isSplash ? BRAND_BLACK : BRAND_GREEN;
+
+          // 1. Ensure theme-color and nav-bar meta tags match the active state
+          var metaThemes = document.querySelectorAll('meta[name="theme-color"], meta[name="msapplication-navbutton-color"], meta[name="navigation-bar-color"]');
+          metaThemes.forEach(function(el) {
+            el.setAttribute('content', activeColor);
+          });
+
+          // 2. Median.co / GoNative WebView EdgeToEdge bridge
+          try {
+            if (window.median && window.median.statusbar) {
+              window.median.statusbar.set({ style: 'light', color: activeColor, overlay: true });
+            }
+          } catch (e) {}
+
+          // 3. React Native WebView bridge
+          try {
+            if (window.ReactNativeWebView && typeof window.ReactNativeWebView.postMessage === 'function') {
+              window.ReactNativeWebView.postMessage(JSON.stringify({
+                type: 'SET_STATUS_BAR',
+                translucent: true,
+                backgroundColor: activeColor,
+                barStyle: 'light-content'
+              }));
+            }
+          } catch (e) {}
+
+          // 4. Android JavaScript Interface bridge (if native app exposes it)
+          try {
+            if (window.AndroidBridge && typeof window.AndroidBridge.setEdgeToEdge === 'function') {
+              window.AndroidBridge.setEdgeToEdge(true);
+            }
+            if (window.AndroidBridge && typeof window.AndroidBridge.setStatusBarColor === 'function') {
+              window.AndroidBridge.setStatusBarColor(activeColor);
+            }
+            if (window.AndroidBridge && typeof window.AndroidBridge.setNavigationBarColor === 'function') {
+              window.AndroidBridge.setNavigationBarColor(activeColor);
+            }
+          } catch (e) {}
+
+          // 5. Capacitor & Cordova Native Bridges
+          try {
+            if (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.StatusBar) {
+              window.Capacitor.Plugins.StatusBar.setOverlaysWebView({ overlay: true });
+              window.Capacitor.Plugins.StatusBar.setBackgroundColor({ color: activeColor });
+            }
+            if (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.NavigationBar) {
+              window.Capacitor.Plugins.NavigationBar.setColor({ color: activeColor });
+            }
+          } catch (e) {}
+          try {
+            if (window.StatusBar) {
+              window.StatusBar.overlaysWebView(true);
+              window.StatusBar.backgroundColorByHexString(activeColor);
+            }
+            if (window.NavigationBar) {
+              window.NavigationBar.backgroundColorByHexString(activeColor);
+            }
+          } catch (e) {}
+        }
+
+        applyEdgeToEdge();
+        window.addEventListener('DOMContentLoaded', applyEdgeToEdge);
+        window.addEventListener('load', applyEdgeToEdge);
+        window.addEventListener('resize', applyEdgeToEdge);
+        window.addEventListener('orientationchange', applyEdgeToEdge);
+        window.__applyEdgeToEdge = applyEdgeToEdge;
+
+        // Failsafe auto-dismiss after 1200ms to guarantee zero infinite freeze
+        setTimeout(function() {
+          try {
+            document.documentElement.classList.remove('splash-active');
+            if (document.body) document.body.classList.remove('splash-active');
+            var preHydrate = document.getElementById('pre-hydration-splash');
+            if (preHydrate) preHydrate.style.display = 'none';
+          } catch (_) {}
+        }, 1200);
+      })();
+    </script>
+    
+    <!-- App Icons & Manifest (Exclusive Immutable Red Runner Launcher Icon) -->
+    <link rel="preload" as="image" href="/runner-logo-hires.png" fetchpriority="high" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" type="image/png" sizes="1024x1024" href="/runner-logo-hires.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/runner-logo.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/runner-logo.png" />
+    <link rel="apple-touch-icon" sizes="1024x1024" href="/runner-logo-hires.png" />
+    
+    <title>Jhadimadi.com - ঝাদিমাদি ডটকম</title>
+    <meta name="description" content="On-demand Hyperlocal Home Services, CHT Organic E-Commerce & Logistics Super-App Platform for Rangamati, Khagrachhari, Bandarban & Bangladesh." />
+    <meta property="og:title" content="Jhadimadi.com - ঝাদিমাদি ডটকম" />
+    <meta property="og:description" content="On-demand Hyperlocal Home Services, CHT Organic E-Commerce & Logistics Super-App Platform for Rangamati, Khagrachhari, Bandarban & Bangladesh." />
+    
+    <!-- Safe External Script & Analytics Shield -->
+    <script>
+      (function() {
+        // Safe Early Shims to prevent 'undefined' crashes if external scripts are blocked or offline
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = window.gtag || function() { window.dataLayer.push(arguments); };
+        window.tidioChatApi = window.tidioChatApi || {
+          hide: function() {},
+          show: function() {},
+          open: function() {},
+          close: function() {},
+          on: function() {},
+          off: function() {},
+          setColor: function() {},
+          setVisitorData: function() {},
+          isReady: false
+        };
+
+        // Suppress unhandled network errors when external scripts, analytics, or CDN resources are blocked or offline
+        window.addEventListener('error', function(e) {
+          if (e && e.target && e.target.tagName === 'SCRIPT' && e.target.src) {
+            var src = String(e.target.src);
+            if (src.indexOf('tidio.co') !== -1 || src.indexOf('analytics') !== -1 || src.indexOf('googletagmanager') !== -1 || src.indexOf('facebook') !== -1) {
+              console.warn('[SafeScriptLoader] External script blocked or unavailable gracefully:', src);
+              if (typeof e.preventDefault === 'function') e.preventDefault();
+              if (typeof e.stopPropagation === 'function') e.stopPropagation();
+              return true;
+            }
+          }
+        }, true);
+      })();
+    </script>
+
+    <!-- External Script Resource Optimization & Tidio Safe Background Loader -->
+    <link rel="dns-prefetch" href="https://code.tidio.co" />
+    <script>
+      (function() {
+        // Safe Console Filter for known benign iframe sandbox warnings
+        try {
+          var origWarn = console.warn;
+          var benignWarnings = [
+            'Permissions policy violation',
+            'No ID or name found in config',
+            'preloaded using link preload but not used',
+            'code.tidio.co/fonts'
+          ];
+          console.warn = function() {
+            var msg = Array.prototype.slice.call(arguments).map(function(item) { return String(item); }).join(' ');
+            for (var i = 0; i < benignWarnings.length; i++) {
+              if (msg.indexOf(benignWarnings[i]) !== -1) return;
+            }
+            return origWarn.apply(console, arguments);
+          };
+        } catch (_) {}
+
+        function hideTidioLauncher() {
+          try {
+            if (window.tidioChatApi) {
+              window.tidioChatApi.hide();
+              window.tidioChatApi.on('close', function() {
+                try {
+                  document.body.classList.remove('tidio-chat-visible');
+                  window.tidioChatApi.hide();
+                } catch (_) {}
+              });
+            }
+          } catch (_) {}
+        }
+
+        if (window.tidioChatApi && window.tidioChatApi.isReady) {
+          hideTidioLauncher();
+        } else {
+          document.addEventListener('tidioChat-ready', hideTidioLauncher);
+        }
+
+        // Lazy load Tidio in background after page hydration to eliminate font preload warnings
+        var loadTidioScript = function() {
+          if (document.querySelector('script[src*="tidio.co"]')) return;
+          var s = document.createElement('script');
+          s.src = '//code.tidio.co/rhikfdzcdjdqjewrch3mzvppdtksokyc.js';
+          s.async = true;
+          s.onerror = function() {
+            console.warn('[SafeScript] Tidio live chat script unavailable or offline - safely bypassed.');
+          };
+          document.head.appendChild(s);
+        };
+
+        if (document.readyState === 'complete') {
+          setTimeout(loadTidioScript, 1500);
+        } else {
+          window.addEventListener('load', function() {
+            setTimeout(loadTidioScript, 1500);
+          });
+        }
+      })();
+    </script>
+    
+    <!-- Google Maps JavaScript API with YOUR_API_KEY placeholder -->
+    <script>
+      window.initMap = window.initMap || function() {
+        if (typeof window.__googleMapsLoadedCallback === 'function') {
+          window.__googleMapsLoadedCallback();
+        }
+      };
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap" async defer></script>
+  </head>
+  <body class="bg-[#faf9f6] text-gray-900">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

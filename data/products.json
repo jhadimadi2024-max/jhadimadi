@@ -1,0 +1,61 @@
+[
+  {
+    "id": "15",
+    "title_bn": "ঝাদিমাদি সিদোল",
+    "title_en": "ঝাদিমাদি সিদোল",
+    "nameBn": "ঝাদিমাদি সিদোল",
+    "nameEn": "ঝাদিমাদি সিদোল",
+    "category": "Food",
+    "categoryLabelBn": "ফুড / ভোজ্য পণ্য",
+    "price": 600,
+    "unit_pack": "১ পিস",
+    "unit": "১ পিস",
+    "stock_quantity": 50,
+    "stock": 50,
+    "image": "https://dwhsqftllkximhfvwqak.supabase.co/storage/v1/object/public/products/1789742610892_7c5daf90-1a5b-4aba-9346-8a1a5f77cc91.jpg",
+    "images": [
+      "https://dwhsqftllkximhfvwqak.supabase.co/storage/v1/object/public/products/1789742610892_7c5daf90-1a5b-4aba-9346-8a1a5f77cc91.jpg"
+    ],
+    "badges": [
+      "ঘরে তৈরি (Homemade)",
+      "১০০% খাঁটি ও পরীক্ষিত"
+    ],
+    "badge": "ঘরে তৈরি (Homemade)",
+    "badgeColor": "bg-emerald-600",
+    "key_highlights": [
+      "১০০% প্রাকৃতিক ও প্রিজারভেটিভ বা ক্ষতিকর কেমিক্যাল মুক্ত।",
+      "খাগড়াছড়ি ও পাহাড়ি বাগান থেকে সরাসরি সংগৃহীত।"
+    ],
+    "features": [
+      "১০০% প্রাকৃতিক ও প্রিজারভেটিভ বা ক্ষতিকর কেমিক্যাল মুক্ত।",
+      "খাগড়াছড়ি ও পাহাড়ি বাগান থেকে সরাসরি সংগৃহীত।"
+    ],
+    "benefits": [
+      "১০০% প্রাকৃতিক ও প্রিজারভেটিভ বা ক্ষতিকর কেমিক্যাল মুক্ত।",
+      "খাগড়াছড়ি ও পাহাড়ি বাগান থেকে সরাসরি সংগৃহীত।"
+    ],
+    "how_it_is_produced": "",
+    "productionMethod": "",
+    "materials_and_ingredients": "",
+    "materials": "",
+    "usage_and_storage": "",
+    "usageInstructions": "",
+    "origin": "পার্বত্য চট্টগ্রাম",
+    "productionOrigin": "",
+    "quality_standard": "১০০% বিশুদ্ধ ও পরীক্ষিত",
+    "qualityStandards": "১০০% বিশুদ্ধ ও পরীক্ষিত",
+    "seller_info": "ঝাদিমাদি ভেরিফাইড মার্চেন্ট নেটওয়ার্ক",
+    "videoUrl": "",
+    "youtubeUrl": "",
+    "descriptionBn": "১০০%খাটি সিদোল",
+    "descriptionEn": "১০০%খাটি সিদোল",
+    "rating": 0,
+    "reviewsCount": 0,
+    "inStock": true,
+    "isActive": true,
+    "isPublished": true,
+    "sellerName": "ঝাদিমাদি ভেরিফাইড মার্চেন্ট নেটওয়ার্ক",
+    "sellerPhone": "",
+    "createdAt": "2026-09-19T15:57:30.376122+00:00"
+  }
+]

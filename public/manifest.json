@@ -1,0 +1,30 @@
+{
+  "id": "jhadimadi-superapp",
+  "name": "Jhadimadi.com - ঝাদিমাদি ডটকম",
+  "short_name": "Jhadimadi.com",
+  "description": "On-demand Hyperlocal Home Services, CHT Organic E-Commerce & Logistics Super-App Platform for Rangamati, Khagrachhari, Bandarban & Bangladesh.",
+  "icons": [
+    {
+      "src": "/runner-logo.png",
+      "type": "image/png",
+      "sizes": "180x180 192x192"
+    },
+    {
+      "src": "/runner-logo-hires.png",
+      "type": "image/png",
+      "sizes": "512x512 1024x1024",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo.png",
+      "type": "image/png",
+      "sizes": "512x512 1024x1024",
+      "purpose": "maskable any"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#000000",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#000000"
+}

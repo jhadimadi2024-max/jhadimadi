@@ -1,0 +1,58 @@
+[
+  {
+    "id": "mem_01",
+    "districtUniqueId": "খাগ-০০১",
+    "name": "রিপন চাকমা",
+    "role": "permanent_member",
+    "roleLabelBn": "স্থায়ী সদস্য ও উপজেলা প্রতিনিধি",
+    "district": "খাগড়াছড়ি",
+    "upazila": "খাগড়াছড়ি সদর",
+    "area": "চেঙ্গি স্কয়ার",
+    "phone": "01870592699",
+    "joiningDate": "২০২২-০৩-১৫",
+    "status": "সক্রিয় সদস্য",
+    "responsibilities": "স্থানীয় উদ্যোক্তা ও গ্রাহকদের পণ্য ও সেবা সমন্বয়"
+  },
+  {
+    "id": "mem_02",
+    "districtUniqueId": "রাঙা-০০১",
+    "name": "শান্তি জীবন ত্রিপুরা",
+    "role": "permanent_member",
+    "roleLabelBn": "স্থায়ী সদস্য ও ইউনিয়ন প্রতিনিধি",
+    "district": "রাঙ্গামাটি",
+    "upazila": "রাঙ্গামাটি সদর",
+    "area": "দেবাশীষ নগর",
+    "phone": "01870592699",
+    "joiningDate": "২০২২-০৪-০১",
+    "status": "সক্রিয় সদস্য",
+    "responsibilities": "কৃষি ও পাহাড়ি অর্গানিক পণ্য সংগ্রহ ও মান নিয়ন্ত্রণ"
+  },
+  {
+    "id": "mem_03",
+    "districtUniqueId": "বান্দ-০০১",
+    "name": "মংনু মারমা",
+    "role": "permanent_member",
+    "roleLabelBn": "স্থায়ী সদস্য ও ফিল্ড কো-অর্ডিনেটর",
+    "district": "বান্দরবান",
+    "upazila": "বান্দরবান সদর",
+    "area": "বালাঘাটা",
+    "phone": "01870592699",
+    "joiningDate": "২০২২-০৬-২০",
+    "status": "সক্রিয় সদস্য",
+    "responsibilities": "হাইপারলোকাল ডেলিভারি ও সেবাদাতাদের তদারকি"
+  },
+  {
+    "id": "mem_04",
+    "districtUniqueId": "খাগ-০০২",
+    "name": "সুমি দেওয়ান",
+    "role": "registered_user",
+    "roleLabelBn": "নিবন্ধিত নারী উদ্যোক্তা",
+    "district": "খাগড়াছড়ি",
+    "upazila": "দীঘিনালা",
+    "area": "বোয়ালখালী",
+    "phone": "01870592699",
+    "joiningDate": "২০২৩-০১-১০",
+    "status": "সক্রিয় সদস্য",
+    "responsibilities": "হস্তশিল্প ও ঐতিহ্যবাহী কোমর তাঁতের পোশাক"
+  }
+]

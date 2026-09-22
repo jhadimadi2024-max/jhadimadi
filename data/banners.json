@@ -1,0 +1,38 @@
+[
+  {
+    "id": 26,
+    "created_at": "2026-09-21T07:33:55.89044+00:00",
+    "title": "Sidol",
+    "image_url": "https://dwhsqftllkximhfvwqak.supabase.co/storage/v1/object/public/products/1789905027782_f1f5a31a-048e-4b65-93eb-53577cd4f32f.jpg"
+  },
+  {
+    "id": 27,
+    "created_at": "2026-09-21T07:33:56.806829+00:00",
+    "title": "Sidol",
+    "image_url": "https://dwhsqftllkximhfvwqak.supabase.co/storage/v1/object/public/products/1789905027782_f1f5a31a-048e-4b65-93eb-53577cd4f32f.jpg"
+  },
+  {
+    "id": 28,
+    "created_at": "2026-09-21T08:15:00.477779+00:00",
+    "title": "SIdol",
+    "image_url": "https://dwhsqftllkximhfvwqak.supabase.co/storage/v1/object/public/products/1789742618186_1d15e3c9-8f82-49bb-8d45-ca470a8f66a2.jpg"
+  },
+  {
+    "id": 29,
+    "created_at": "2026-09-21T08:15:01.221717+00:00",
+    "title": "SIdol",
+    "image_url": "https://dwhsqftllkximhfvwqak.supabase.co/storage/v1/object/public/products/1789742618186_1d15e3c9-8f82-49bb-8d45-ca470a8f66a2.jpg"
+  },
+  {
+    "id": 30,
+    "created_at": "2026-09-21T08:16:44.202596+00:00",
+    "title": "sodol",
+    "image_url": "https://dwhsqftllkximhfvwqak.supabase.co/storage/v1/object/public/products/1789978562568_da19ec10-e75b-4bdd-839d-aa8880402e94.jpg"
+  },
+  {
+    "id": 31,
+    "created_at": "2026-09-21T08:16:44.902233+00:00",
+    "title": "sodol",
+    "image_url": "https://dwhsqftllkximhfvwqak.supabase.co/storage/v1/object/public/products/1789978562568_da19ec10-e75b-4bdd-839d-aa8880402e94.jpg"
+  }
+]

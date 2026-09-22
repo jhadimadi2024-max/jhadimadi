@@ -1,0 +1,498 @@
+@import "tailwindcss";
+
+/* CSS Safe-Area Variables for Edge-to-Edge Android WebView, Flutter, React Native, and iOS */
+:root {
+  --safe-area-inset-top: env(safe-area-inset-top, 0px);
+  --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-area-inset-left: env(safe-area-inset-left, 0px);
+  --safe-area-inset-right: env(safe-area-inset-right, 0px);
+}
+
+/* 1. Prevent pull-to-refresh while maintaining smooth vertical scrolling & edge-to-edge status bar */
+
+html {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  min-height: 100dvh !important;
+  overscroll-behavior-y: none !important;
+  overscroll-behavior-x: none !important;
+  overflow: hidden !important;
+  background-color: #faf9f6;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  min-height: 100dvh !important;
+  /* Instant tap responsiveness with zero click delay and smooth touch handling */
+  touch-action: manipulation;
+  -webkit-overflow-scrolling: touch;
+  background-color: #faf9f6;
+  color: #1F2937;
+  overflow: hidden !important;
+}
+
+#root {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  min-height: 100dvh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  background-color: #faf9f6;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Once splash screen is completed and dismissed, smoothly transition to warm neutral background */
+html:not(.splash-active),
+body:not(.splash-active),
+#root:not(.splash-active) {
+  background-color: #faf9f6 !important;
+}
+
+/* 1. হেডার ও টপ বার লেআউট */
+header, .site-header, .main-header, .app-edge-to-edge-header {
+  position: relative !important;
+  top: auto !important;
+  width: 100% !important;
+  margin: 0 !important;
+  margin-top: 0 !important;
+  padding-top: constant(safe-area-inset-top);
+  padding-top: env(safe-area-inset-top, 0px); /* মোবাইলের নোচ বা স্ট্যাটাস বার হ্যান্ডেল করার জন্য */
+  padding-bottom: 0 !important;
+  padding-left: constant(safe-area-inset-left);
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: constant(safe-area-inset-right);
+  padding-right: env(safe-area-inset-right, 0px);
+  z-index: 40;
+  background-color: transparent !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-sizing: border-box !important;
+}
+
+/* 2. মূল কন্টেন্ট এরিয়া ও ফর্মসমূহ - Soft Off-White (#faf9f6) */
+main,
+.main-content,
+.app-scroll-container,
+.app-page-container,
+form,
+.app-form-wrapper,
+[id$="-screen-root"]:not(#splash-screen-root):not(#jhadimadi-splash-screen),
+[id$="-page-root"],
+[id$="-profile-root"],
+[id$="-form"],
+[id$="-form-container"] {
+  background-color: #faf9f6 !important;
+  margin-top: 0 !important;
+}
+
+/* Splash Screen Strict Solid Pure Black (#000000) & Zero Gap / Border Override */
+html.splash-active,
+body.splash-active,
+#root.splash-active,
+#splash-screen-root,
+#jhadimadi-splash-screen,
+.splash-container {
+  background-color: #000000 !important;
+  background: #000000 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-width: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
+  width: 100% !important;
+  width: 100vw !important;
+  height: 100% !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+#splash-screen-root *,
+#jhadimadi-splash-screen * {
+  border-bottom-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Ensure no page, section, container, or form uses pure white (#ffffff) */
+.bg-white,
+.bg-\[\#FAF8F5\],
+.bg-\[\#ffffff\],
+.bg-\[\#fff\],
+.bg-\[\#fdfbfb\] {
+  background-color: #faf9f6 !important;
+}
+
+/* 3D Modern Icon, Card & Button Tactile System */
+.icon-3d {
+  position: relative;
+  box-shadow: inset 0 1.5px 1px rgba(255, 255, 255, 0.7), 0 6px 14px rgba(0, 0, 0, 0.12);
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+}
+
+.category-card-3d {
+  position: relative;
+  border: 1px solid rgba(229, 231, 235, 0.9);
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.06), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
+  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.category-card-3d:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.1), 0 4px 10px -2px rgba(0, 0, 0, 0.05);
+}
+.category-card-3d:active {
+  transform: translateY(1.5px) scale(0.98);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.btn-3d-cta {
+  position: relative;
+  box-shadow: inset 0 1.5px 1.5px rgba(255, 255, 255, 0.45), 0 5px 14px rgba(22, 163, 74, 0.35);
+  transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-3d-cta:hover {
+  box-shadow: inset 0 1.5px 1.5px rgba(255, 255, 255, 0.6), 0 8px 18px rgba(22, 163, 74, 0.45);
+  transform: translateY(-1.5px);
+}
+.btn-3d-cta:active {
+  transform: translateY(1.5px) scale(0.985);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Edge-to-edge bottom navigation layout */
+.app-edge-to-edge-bottom-nav, .site-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  margin: 0;
+  margin-bottom: 0;
+  background-color: transparent !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-top: none !important;
+  box-shadow: none !important;
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  padding-left: constant(safe-area-inset-left);
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: constant(safe-area-inset-right);
+  padding-right: env(safe-area-inset-right, 0px);
+  z-index: 50;
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1), opacity 300ms ease;
+  will-change: transform;
+}
+
+/* Strictly confine the bottom nav inside the Phone Preview Frame in the Admin Dashboard */
+.preview-mode .app-edge-to-edge-bottom-nav,
+.preview-mode .site-bottom-nav,
+.is-preview .app-edge-to-edge-bottom-nav,
+.is-preview .site-bottom-nav,
+.is-preview.app-edge-to-edge-bottom-nav,
+.is-preview.site-bottom-nav,
+[data-preview-frame] .app-edge-to-edge-bottom-nav,
+[data-preview-frame] .site-bottom-nav {
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  z-index: 40 !important;
+}
+
+/* Strictly eliminate and prevent any floating bottom navigation bar outside the mobile preview in Admin Dashboard */
+.desktop-admin-dashboard > .site-bottom-nav,
+.desktop-admin-dashboard > .app-edge-to-edge-bottom-nav,
+.admin-workspace > .site-bottom-nav,
+.admin-workspace > .app-edge-to-edge-bottom-nav {
+  display: none !important;
+}
+
+/* =========================================================
+   LIVE MOBILE PREVIEW: IMAGE FIT & HEADER OVERLAP FIXES
+   Prevents CSS overlapping in the header/logo and enforces
+   object-fit: cover on all product and banner images.
+   ========================================================= */
+[data-preview-frame] header,
+[data-preview-frame] .site-header,
+[data-preview-frame] #site-top-navbar {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+[data-preview-frame] #site-top-navbar .max-w-7xl {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 4px 6px !important;
+  gap: 4px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+
+[data-preview-frame] #navbar-brand-logo-trigger {
+  min-width: 0 !important;
+  flex-shrink: 1 !important;
+  overflow: hidden !important;
+}
+
+[data-preview-frame] #navbar-brand-logo-trigger span {
+  white-space: nowrap !important;
+}
+
+/* Hide desktop-only nav inside mobile preview even on large desktop screens */
+[data-preview-frame] nav[aria-label="Desktop Navigation"],
+[data-preview-frame] .site-header .md\:flex {
+  display: none !important;
+}
+
+/* Absolute guarantee: object-fit: cover on product and banner images to avoid distortion */
+img.product-image,
+img.banner-image,
+[data-product-image="true"],
+[data-banner-image="true"],
+.product-card img,
+.banner-slide img,
+.hero-banner img,
+[data-preview-frame] [data-product-image="true"],
+[data-preview-frame] [data-banner-image="true"],
+[data-preview-frame] .product-card img,
+[data-preview-frame] .banner-slide img,
+[data-preview-frame] .hero-banner img,
+[data-preview-frame] .aspect-\[16\/7\] img,
+[data-preview-frame] .aspect-video img,
+[data-preview-frame] .aspect-square img {
+  object-fit: cover !important;
+}
+
+/* Logos, brand marks, and icons must always maintain proportions without stretching */
+img[src*="logo"],
+img[src*="runner"],
+img[alt*="logo" i],
+img[alt*="runner" i],
+[data-preview-frame] img[src*="logo"],
+[data-preview-frame] img[src*="runner"],
+[data-preview-frame] img[alt*="logo" i],
+[data-preview-frame] img[alt*="runner" i] {
+  object-fit: contain !important;
+}
+
+/* Mobile preview search bar layout & responsive input */
+[data-preview-frame] [role="search"] {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 4px 8px !important;
+  min-width: 0 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+[data-preview-frame] [role="search"] input {
+  min-width: 0 !important;
+  flex: 1 1 auto !important;
+  font-size: 11px !important;
+}
+
+.site-bottom-nav.nav-hidden,
+.app-edge-to-edge-bottom-nav.nav-hidden {
+  transform: translateY(100%) !important;
+  pointer-events: none !important;
+}
+
+.site-bottom-nav.nav-visible,
+.app-edge-to-edge-bottom-nav.nav-visible {
+  transform: translateY(0) !important;
+  pointer-events: auto !important;
+}
+
+/* Bottom Navigation */
+.bottom-nav-fixed {
+  will-change: transform;
+}
+
+/* Edge-to-edge status bar cover extension */
+.app-status-bar-cover {
+  width: 100%;
+  background-color: #008055;
+  flex-shrink: 0;
+  height: constant(safe-area-inset-top);
+  height: env(safe-area-inset-top, 0px);
+}
+
+/* Edge-to-edge seamless mobile header safe area */
+.app-safe-top-header,
+.pt-safe {
+  padding-top: constant(safe-area-inset-top);
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+/* Smooth scrolling container */
+.app-scroll-container {
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbar for clean app-like UI */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Subtle slim horizontal scrollbar for category container */
+.category-scroll-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  touch-action: pan-x;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+.category-scroll-container::-webkit-scrollbar {
+  height: 3.5px;
+}
+
+.category-scroll-container::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 9999px;
+}
+
+.category-scroll-container::-webkit-scrollbar-thumb {
+  background: rgba(22, 163, 74, 0.4);
+  border-radius: 9999px;
+}
+
+.category-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(22, 163, 74, 0.7);
+}
+
+/* =========================================================
+   RESPONSIVE DESIGN: MOBILE, TABLET & WEB BREAKPOINTS
+   ========================================================= */
+
+/* মোবাইল বা ছোট স্ক্রিনের জন্য নেভিগেশন দৃশ্যমান থাকবে */
+.app-navigation {
+  display: block; 
+}
+
+/* বড় স্ক্রিন বা ওয়েব ভিউর জন্য (যেমন: ৭৬৮ পিক্সেলের বেশি চওড়া স্ক্রিন) নেভিগেশন লুকিয়ে যাবে */
+@media screen and (min-width: 768px) {
+  .app-navigation {
+    display: none !important;
+  }
+  
+  /* ওয়েব ভিউর জন্য মেইন কন্টেন্ট ফুল উইডথ ও প্রফেশনাল ডেস্কটপ লেআউটে থাকবে */
+  .main-content {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding-bottom: 24px !important;
+  }
+}
+
+/* =========================================================
+   CLEAN HOME PAGE: HIDE FLOATING CHAT WIDGETS & BUBBLES
+   Ensures Tidio remains active in the background while keeping
+   the front/home page interface completely clean and uncluttered.
+   ========================================================= */
+body:not(.tidio-chat-visible) #tidio-chat,
+body:not(.tidio-chat-visible) #tidio-chat-iframe,
+body:not(.tidio-chat-visible) div[id*="tidio-chat"]:not(.tidio-chat-open),
+body:not(.tidio-chat-visible) iframe[id*="tidio-chat-iframe"] {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
+
+/* Ensure when Tidio chat is opened via Contact Us, it displays cleanly */
+body.tidio-chat-visible #tidio-chat,
+body.tidio-chat-visible #tidio-chat-iframe {
+  display: block !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  visibility: visible !important;
+  z-index: 99999 !important;
+}
+
+/* =========================================================
+   LIVE MOBILE PREVIEW & IMAGE COVER / BACKGROUND RULES
+   Prevents white boxes, blank stretched images, and squishing
+   ========================================================= */
+
+/* Prevent white boxes or stretching on any banner image in Admin & Mobile Preview */
+img[data-banner-image="true"],
+.aspect-\[16\/7\] img,
+.aspect-\[21\/9\] img,
+.aspect-\[24\/8\] img {
+  object-fit: cover !important;
+  background-color: #0f172a !important;
+}
+
+/* Ensure product images never show white boxes or distortion */
+img[data-product-image="true"],
+.product-card img {
+  object-fit: cover !important;
+  background-color: #f1f5f9 !important;
+}
+
+/* Live Mobile Preview Constraints (Locked strictly to 375px viewport) */
+[data-preview-frame="true"] {
+  width: 375px !important;
+  min-width: 375px !important;
+  max-width: 375px !important;
+  box-sizing: border-box !important;
+}
+
+/* Enforce 2-column layout inside the 375px preview frame so cards never squish */
+[data-preview-frame="true"] [data-product-grid="true"] {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 0.5rem !important;
+}
+
+/* Header cleanliness inside preview */
+[data-preview-frame="true"] header {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+[data-preview-frame="true"] header button {
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+}
+
