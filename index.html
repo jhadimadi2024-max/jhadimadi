@@ -3,10 +3,109 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes" />
+    <title>Jhadimadi.com - ঝাদিমাদি ডটকম</title>
+    <meta name="description" content="On-demand Hyperlocal Home Services, CHT Organic E-Commerce & Logistics Super-App Platform for Rangamati, Khagrachhari, Bandarban & Bangladesh." />
+    <meta property="og:title" content="Jhadimadi.com - ঝাদিমাদি ডটকম" />
+    <meta property="og:description" content="On-demand Hyperlocal Home Services, CHT Organic E-Commerce & Logistics Super-App Platform for Rangamati, Khagrachhari, Bandarban & Bangladesh." />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Jhadimadi.com - ঝাদিমাদি ডটকম" />
+    <meta property="og:url" content="https://jadimadi.com" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1200&h=630&q=80" />
+    <meta property="og:image:alt" content="Jhadimadi.com - ঝাদিমাদি ডটকম" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Jhadimadi.com - ঝাদিমাদি ডটকম" />
+    <meta name="twitter:description" content="On-demand Hyperlocal Home Services, CHT Organic E-Commerce & Logistics Super-App Platform for Rangamati, Khagrachhari, Bandarban & Bangladesh." />
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1200&h=630&q=80" />
     
-    <!-- Early Safe Fetch Polyfill, Unload Event Modernization & Global Config & WebSocket Safety Shield -->
+    <!-- Early Safe Fetch Polyfill, Error Interceptor, Unload Event Modernization & Global Config -->
     <script>
       (function() {
+        // -1. Early Error Interceptor: Gracefully traps and suppresses sandboxed iframe getter-only fetch assignment errors
+        try {
+          var isFetchGetterError = function(msg) {
+            if (!msg) return false;
+            var str = String(msg);
+            return str.indexOf('Cannot set property fetch') !== -1 ||
+                   str.indexOf('which has only a getter') !== -1;
+          };
+
+          window.addEventListener('error', function(event) {
+            var msg = event && (event.message || (event.error && event.error.message));
+            if (isFetchGetterError(msg)) {
+              if (typeof event.preventDefault === 'function') event.preventDefault();
+              if (typeof event.stopImmediatePropagation === 'function') event.stopImmediatePropagation();
+              return true;
+            }
+          }, true);
+
+          var prevOnError = window.onerror;
+          window.onerror = function(msg, source, lineno, colno, error) {
+            var errorMsg = String(msg || (error && error.message) || '');
+            if (isFetchGetterError(errorMsg)) {
+              return true; // suppresses uncaught error reporting in browser/sandbox
+            }
+            if (typeof prevOnError === 'function') {
+              return prevOnError.apply(this, arguments);
+            }
+            return false;
+          };
+
+          window.addEventListener('unhandledrejection', function(event) {
+            var reason = event && event.reason;
+            var msg = typeof reason === 'string' ? reason : (reason && reason.message) || '';
+            if (isFetchGetterError(msg)) {
+              if (typeof event.preventDefault === 'function') event.preventDefault();
+              return true;
+            }
+          }, true);
+        } catch (_) {}
+
+        // -0.5 Safe Fetch Polyfill for Sandboxed Iframe Previews (sets getter & setter on Window.prototype and window)
+        try {
+          var getTrueNativeFetch = function() {
+            try {
+              if (typeof Window !== 'undefined' && Window.prototype) {
+                var protoDesc = Object.getOwnPropertyDescriptor(Window.prototype, 'fetch');
+                if (protoDesc && typeof protoDesc.value === 'function') return protoDesc.value.bind(window);
+              }
+              var winDesc = Object.getOwnPropertyDescriptor(window, 'fetch');
+              if (winDesc && typeof winDesc.value === 'function') return winDesc.value.bind(window);
+            } catch (_) {}
+            return (typeof window !== 'undefined' && typeof window.fetch === 'function') ? window.fetch.bind(window) : null;
+          };
+
+          var trueNative = getTrueNativeFetch();
+          if (trueNative) {
+            window.__trueNativeBrowserFetch = trueNative;
+            window.__originalNativeFetch = trueNative;
+          }
+          var nativeFetchRef = window.__trueNativeBrowserFetch || window.__originalNativeFetch || window.fetch;
+          window.__customFetch = window.__customFetch || nativeFetchRef;
+
+          var defineSafeFetch = function(target) {
+            if (!target) return;
+            try {
+              Object.defineProperty(target, 'fetch', {
+                get: function() {
+                  return window.__customFetch || window.__trueNativeBrowserFetch || nativeFetchRef;
+                },
+                set: function(fn) {
+                  if (typeof fn === 'function' && fn !== window.__customFetch) {
+                    window.__customFetch = fn;
+                  }
+                },
+                configurable: true,
+                enumerable: true
+              });
+            } catch (_) {}
+          };
+
+          if (typeof Window !== 'undefined' && Window.prototype) {
+            defineSafeFetch(Window.prototype);
+          }
+          defineSafeFetch(window);
+        } catch (_) {}
+
         // 0. Canonical Global Config Initialization with mandatory id and name
         try {
           var appCfg = {
@@ -123,65 +222,6 @@
             }
           }, true);
         } catch (_) {}
-
-        // 2. Safe Fetch Polyfill for Sandboxed Iframe Previews
-        try {
-          if (!window.__originalNativeFetch && typeof window.fetch === 'function') {
-            window.__originalNativeFetch = window.fetch.bind(window);
-          }
-          var currentFetch = window.__originalNativeFetch;
-
-          var winDesc = Object.getOwnPropertyDescriptor(window, 'fetch');
-          if (!winDesc || winDesc.configurable !== false) {
-            Object.defineProperty(window, 'fetch', {
-              get: function() {
-                return currentFetch;
-              },
-              set: function(fn) {
-                if (typeof fn === 'function' && fn !== currentFetch) {
-                  currentFetch = fn;
-                }
-              },
-              configurable: true,
-              enumerable: true
-            });
-          }
-        } catch (_) {}
-
-        // Suppress any stray 'Cannot set property fetch', unload violation, or WebSocket timeout errors
-        try {
-          window.addEventListener('error', function(e) {
-            if (e && e.message && typeof e.message === 'string') {
-              var msg = e.message.toLowerCase();
-              if (
-                msg.indexOf('cannot set property fetch') !== -1 ||
-                msg.indexOf('unload is deprecated') !== -1 ||
-                msg.indexOf('permissions policy violation: unload') !== -1 ||
-                msg.indexOf('websocket') !== -1 ||
-                msg.indexOf('err_connection_timed_out') !== -1 ||
-                msg.indexOf('closed without opened') !== -1
-              ) {
-                if (typeof e.preventDefault === 'function') e.preventDefault();
-                if (typeof e.stopImmediatePropagation === 'function') e.stopImmediatePropagation();
-                return true;
-              }
-            }
-          }, true);
-
-          window.addEventListener('unhandledrejection', function(e) {
-            var reasonStr = (e && e.reason && (e.reason.message || e.reason.toString())) || '';
-            var lower = String(reasonStr).toLowerCase();
-            if (
-              lower.indexOf('websocket') !== -1 ||
-              lower.indexOf('err_connection_timed_out') !== -1 ||
-              lower.indexOf('closed without opened') !== -1 ||
-              lower.indexOf('failed to fetch') !== -1
-            ) {
-              if (typeof e.preventDefault === 'function') e.preventDefault();
-              return true;
-            }
-          });
-        } catch (_) {}
       })();
     </script>
     
@@ -275,7 +315,7 @@
         window.addEventListener('orientationchange', applyEdgeToEdge);
         window.__applyEdgeToEdge = applyEdgeToEdge;
 
-        // Failsafe auto-dismiss after 1200ms to guarantee zero infinite freeze
+        // Failsafe auto-dismiss after 3800ms to guarantee zero infinite freeze
         setTimeout(function() {
           try {
             document.documentElement.classList.remove('splash-active');
@@ -283,7 +323,7 @@
             var preHydrate = document.getElementById('pre-hydration-splash');
             if (preHydrate) preHydrate.style.display = 'none';
           } catch (_) {}
-        }, 1200);
+        }, 3800);
       })();
     </script>
     
@@ -294,11 +334,6 @@
     <link rel="icon" type="image/png" sizes="192x192" href="/runner-logo.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/runner-logo.png" />
     <link rel="apple-touch-icon" sizes="1024x1024" href="/runner-logo-hires.png" />
-    
-    <title>Jhadimadi.com - ঝাদিমাদি ডটকম</title>
-    <meta name="description" content="On-demand Hyperlocal Home Services, CHT Organic E-Commerce & Logistics Super-App Platform for Rangamati, Khagrachhari, Bandarban & Bangladesh." />
-    <meta property="og:title" content="Jhadimadi.com - ঝাদিমাদি ডটকম" />
-    <meta property="og:description" content="On-demand Hyperlocal Home Services, CHT Organic E-Commerce & Logistics Super-App Platform for Rangamati, Khagrachhari, Bandarban & Bangladesh." />
     
     <!-- Safe External Script & Analytics Shield -->
     <script>
@@ -397,12 +432,25 @@
       })();
     </script>
     
-    <!-- Google Maps JavaScript API with YOUR_API_KEY placeholder -->
+    <!-- Leaflet CSS & JS for OpenStreetMap Interactive Mapping (No API Key Required) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Google Maps JavaScript API with fallback handling -->
     <script>
       window.initMap = window.initMap || function() {
         if (typeof window.__googleMapsLoadedCallback === 'function') {
-          window.__googleMapsLoadedCallback();
+          try {
+            window.__googleMapsLoadedCallback();
+          } catch (e) {
+            console.warn('Map init callback notice:', e);
+          }
         }
+      };
+      // Suppress noisy third-party invalid key dialogs in development
+      window.gm_authFailure = function() {
+        console.warn('Google Maps API key is placeholder or invalid. Falling back seamlessly to Leaflet/OpenStreetMap.');
+        window.__googleMapsAuthFailed = true;
       };
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap" async defer></script>
